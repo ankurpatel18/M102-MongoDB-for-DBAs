@@ -1,4 +1,3 @@
-mongo-edu -d /Volumes/Source/Downloads/mongodb-edu/M102\ MongoDB\ for\ DBAs/Videos/chapter_2_crud_and_administrative_commands/ -u ankurpatel18@gmail.com --cw --hq --cc --save myvideo
 =====================================================
 
 Homework: Homework 2.1

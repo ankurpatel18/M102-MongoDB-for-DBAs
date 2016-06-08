@@ -1,4 +1,4 @@
-mongo-edu -d /Volumes/Source/Downloads/mongodb-edu/M102\ MongoDB\ for\ DBAs/Videos/chapter_1_introduction/ -u ankurpatel18@gmail.com --cw --hq --cc --save myvideo
+mongo-edu -d ./ -u [MongoDB - userName] --cw --hq --cc --save myvideo
 =====================================================
 
 Homework: Homework 1.1
