@@ -1,0 +1,85 @@
+cfg = {
+	_id: 'abc',
+	members : [
+		{ _id:0, host:'aMac.local:27001' },
+		{ _id:1, host:'aMac.local:27002' }
+	]
+}
+
+mongod --dbpath 1 --port 27001 --replSet abc --smallfiles --logpath log.1 --logappend --oplogSize 50 --fork
+mongod --dbpath 2 --port 27002 --replSet abc --smallfiles --logpath log.2 --logappend --oplogSize 50 --fork
+mongod --dbpath arb --port 30000 --replSet abc --smallfiles --logpath log.3 --logappend --oplogSize 50 --fork
+
+
+rs.addArb("aMac.local:30000")
+=====================================================
+
+Homework: Homework 5.1
+Set up a replica set that includes an arbiter.
+
+To demonstrate that you have done this, what is the text in the "state" field for the arbiter when you run rs.status()?
+
+Ans : 7
+
+
+=====================================================
+
+Homework: Homework 5.2
+
+You have just been hired at a new company with an existing MongoDB deployment. They are running a single replica set with two members. When you ask why, they explain that this ensures that the data will be durable in the face of the failure of either server. They also explain that should they use a readPreference of "primaryPreferred", that the application can read from the one remaining server during server maintenance.
+
+You are concerned about two things, however. First, a server is brought down for maintenance once a month. When this is done, the replica set primary steps down, and the set cannot accept writes. You would like to ensure availability of writes during server maintenance.
+
+Second, you also want to ensure that all writes can be replicated during server maintenance.
+
+Which of the following options will allow you to ensure that a primary is available during server maintenance, and that any writes it receives will replicate during this time?
+
+Check all that apply.
+
+Add another data bearing node.
+Increase the priority of the first server from one to two.
+Add an arbiter.
+Add two arbiters.
+Add two data bearing members plus one arbiter.
+
+
+Ans : 
+Add another data bearing node.
+Add two data bearing members plus one arbiter.
+
+=====================================================
+
+You would like to create a replica set that is robust to data center failure.
+
+You only have two data centers available. Which arrangement(s) of servers will allow you to be stay up (as in, still able to elect a primary) in the event of a failure of either data center (but not both at once)? 
+
+Check all that apply.
+
+
+All 3 servers in data center 1.
+2 servers in data center 1, one server in data center 2.
+None of the above.
+
+Ans : None of the above.
+
+
+=====================================================
+
+Homework: Homework 5.4
+
+Consider the following scenario: You have a two member replica set, a primary, and a secondary.
+
+The data center with the primary goes down, and is expected to remain down for the foreseeable future. Your secondary is now the only copy of your data, and it is not accepting writes. You want to reconfigure your replica set config to exclude the primary, and allow your secondary to be elected, but you run into trouble. Find out the optional parameter that you'll need, and input it into the box below for your rs.reconfig(new_cfg, OPTIONAL PARAMETER).
+
+Hint: You may want to use 
+
+https://docs.mongodb.com/manual/reference/method/rs.reconfig/
+
+to solve this problem.
+
+Your answer should be of the form { key : value } (including brackets). Do not include the rs.reconfigure portion of the query.
+
+Ans : 
+{ force: true }
+
+=====================================================
